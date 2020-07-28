@@ -53,12 +53,26 @@ Here is a very, very simple visual example of what it might look like; however, 
 
 #### Styling requirements
 
-0. **Responsiveness**: When the screen is small, the story should take the full width of the screen. When the screen is larger, as on a computer. Values "small" and "large" are up to you to decide.
+0. **Responsiveness:** When the screen is small, the story should take the full width of the screen. When the screen is larger, as on a computer. Values "small" and "large" are up to you to decide.
 
-1. **Flexbox**: Use at least one flexbox.
+1. **Flexbox:** Use at least one flexbox.
 
-2. **Highlighting currently focused input**: There should be three possible styles of inputs (style is a vague word here, they just need to be distinguishable to the user):
+2. **Highlighting currently focused input:** There should be three possible styles of inputs (style is a vague word here, they just need to be distinguishable to the user):
 
 - currently highlighted input (if the user is typing in one)
 - filled out input (the user has already put a word there -- might require JS here ;) )
 - empty input (the user has not already put a word there).
+
+#### Bonus
+
+These are completely optional. They are also a bit more challenging. If you
+finish early and have time, you may feel free to add these to your work.
+
+0. **Save progress:** When the user closes the app, their progress in the
+   inputs should be saved even when they reopen the page. Search for local storage.
+
+1. **Translation:** Use the `i18next` JavaScript library to support another
+   language for your mad libs app. Note that the story should be exactly the
+   same, but translated, and the positions of the inputs will likely be
+   different. Instead of story.txt, you will store the story as a similar string
+   (see the library), and add a button to the page to toggle languages.

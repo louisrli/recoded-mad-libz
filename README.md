@@ -8,7 +8,7 @@ See [wikipedia](https://en.wikipedia.org/wiki/Mad_Libs). Yes, I know this sectio
 
 ### Collaboration requirements
 
-Please don't split the code. Write every line of code together. In each group, every person should understand every line of code. See [pair programming](Pair_programming).
+Please don't split the code. Write every line of code together. In each group, every person should understand every line of code. See [pair programming](Pair_programming). The rule of thumb is like so: if I ask any person about any line of code, that person should be able to answer it.
 
 ### Write a story
 

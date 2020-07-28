@@ -1,1 +1,3 @@
 Louis[n] went[v] to the store[n], and it was fun[a]. He taught[v] the class[n].
+The abbreviation[n] "n" means[v] noun. We use[v] the letter[n] "v" for verbs.
+And for "a", you can[v] make a good[a] guess.

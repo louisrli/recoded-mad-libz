@@ -1,3 +1,38 @@
 /**
  * Your CSS goes here.
  */
+
+body {
+    background-color: rgb(84, 240, 181);
+    font-family: 'Josefin Sans', sans-serif;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+}
+
+.madLibsEdit {
+  /* display: flex; */
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 20px 0;
+  border-radius: 20px;
+  margin: 10px auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  min-width: 60%;
+  max-width: 70%;
+  min-height: 60%;
+  max-height: 70%;
+}
+
+.madLibsPreview{
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 20px 0;
+    border-radius: 20px;
+    margin: 10px auto;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    min-width: 60%;
+    max-width: 70%;
+    min-height: 60%;
+    max-height: 70%;
+}

@@ -1,17 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Sherlock Holmes Mad libs</title>
+    <link rel="icon" type="image/png" href="https://www.pngall.com/wp-content/uploads/4/Sherlock-Holmes-Silhouette-Transparent-File.png" />
     <link href="style.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <div class='madLibsEdit'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+
+<body style="background-color: #b9ccd3">
+    <div class="container">
+        <h1 class="display-3 text-center break-word">
+            ... is Stranger than Fiction
+        </h1>
+
+        <div class="row">
+            <div class="col-10 mx-auto madLibsEdit shadow mb-4 border border-info rounded p-3"></div>
+            <div class="col-10 text-center alert alert-danger d-none m-0" id="alarm"></div>
+        </div>
+        <!-- End of row div-->
+
+        <div class="row">
+            <div class="col-10 mx-auto madLibsPreview bg-success mt-4 border border-info rounded shadow p-3"></div>
+        </div>
+
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="do-not-touch.js"></script>
+        <script src="madlibs.js"></script>
+
+        <div class="row">
+            <footer class="col-7 ml-auto mr-auto pt-5 mt-4 mb-4 border border-info shadow text-center"></footer>
+        </div>
     </div>
-    <div class='madLibsPreview'>
-    </div>
-    <script src="do-not-touch.js"></script>
-    <script src="madlibs.js"></script>
-  </body>
+    <!-- End of container div-->
+</body>
+
 </html>

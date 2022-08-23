@@ -26,24 +26,104 @@
  * There are multiple ways to do this, but you may want to use regular expressions.
  * Please go through this lesson: https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/regular-expressions/
  */
+//converts the story into a string
 function parseStory(rawStory) {
-  // Your code here.
-  return {}; // This line is currently wrong :)
+    let noun = /\[n\]/
+    let verb = /\[v\]/
+    let adj = /\[a\]/
+    let dot = /[.]/g
+    let comma = /[,] /g
+
+    const storyArray = []
+        //splits string into a bunch of words
+    let splitArray = rawStory.split(' ')
+        //goes through each split string and creates object output-i.e {word:, pos}
+    splitArray.forEach((str) => {
+        if (noun.test(str)) {
+            //creates new object
+            const obj = {}
+            obj['word'] = str.slice(0, str.length - 3) //-3 to delete []
+            obj['pos'] = 'noun'
+            storyArray.push(obj)
+        } else if (verb.test(str)) {
+            const obj = {}
+            obj['word'] = str.slice(0, str.length - 3)
+            obj['pos'] = 'verb'
+            storyArray.push(obj)
+        } else if (adj.test(str)) {
+            const obj = {}
+            obj['word'] = str.slice(0, str.length - 3)
+            obj['pos'] = 'adj'
+            storyArray.push(obj)
+        } else if (dot.test(str)) {
+            const obj = {}
+            obj['word'] = str
+            storyArray.push(obj)
+        } else if (comma.test(str)) {
+            const obj = {}
+            obj['word'] = str
+            storyArray.push(obj)
+        } else {
+            const obj = {}
+            obj['word'] = str
+            storyArray.push(obj)
+        }
+    })
+
+    console.log(storyArray)
+    return storyArray // This line is currently wrong :)
 }
 
-/**
- * All your other JavaScript code goes here, inside the function. Don't worry about
- * the `then` and `async` syntax for now.
- *
- * NOTE: You should not be writing any code in the global namespace EXCEPT
- * declaring functions. All code should either:
- * 1. Be in a function.
- * 2. Be in .then() below.
- *
- * You'll want to use the results of parseStory() to display the story on the page.
- */
+//adding text to edit
+
+function madLibsEdit(story) {
+    let edit = document.querySelector('.madLibsEdit')
+    let p = document.createElement('p')
+    edit.appendChild(p)
+    story.forEach((excerpt) => {
+        if ('pos' in excerpt) {
+            // adding input spaces if pos is detected
+            let input = document.createElement('input')
+            let pos = excerpt.pos
+            input.setAttribute('maxlength', '20')
+            input.setAttribute('class', 'form-control d-inline-flex col-lg-2 mt-1')
+            input.setAttribute('id', 'inputId')
+            input.setAttribute('placeholder', `${pos}`)
+            p.appendChild(input)
+        } else {
+            //turning array indexes into text
+            const words = excerpt.word
+            let text = JSON.stringify(words)
+                // let result=text.join (' ')
+            let result = text.replace(/['"]+/g, '')
+            p.innerHTML += result + ' '
+        }
+    })
+}
+
+function madLibsPreview(story) {
+    let madLibsPreview = document.querySelector('.madLibsPreview')
+    for (let i = 0; i < story.length; i++) {
+        if (story[i].pos) {
+            madLibsPreview.innerHTML =
+                madLibsPreview.innerHTML +
+                ' ' +
+                '<span   id="ouctput' +
+                i +
+                ' ' +
+                story[i].pos +
+                ')>' +
+                '</span>';
+            (' ')
+        } else {
+            madLibsPreview.innerHTML = madLibsPreview.innerHTML + ' ' + story[i].word
+        }
+    }
+}
+
 getRawStory()
-  .then(parseStory)
-  .then((processedStory) => {
-    console.log(processedStory);
-  });
+    .then(parseStory)
+    .then((processedStory) => {
+        madLibsEdit(processedStory)
+        madLibsPreview(processedStory)
+    })

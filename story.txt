@@ -1,7 +1,7 @@
-Sometimes I[n] see[v] it as a straight[adj] line
-Drawn[v] with a pencil[n] and a ruler[n] 
-Transecting[v] the circle[n] of the world[n].
+Sometimes I[n] see[v] it as a straight[a] line
+drawn[v] with a pencil[n] and a ruler[n] 
+transecting[v] the circle[a] of the world[n].
 
 But then the sun[n] will come[v] out,
 or the phone[n] will ring[v]
-And I[n] will cease[v] to wonder[adj]
+and I[n] will cease[v] to wonder[a].

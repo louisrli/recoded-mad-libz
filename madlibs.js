@@ -26,9 +26,28 @@
  * There are multiple ways to do this, but you may want to use regular expressions.
  * Please go through this lesson: https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/regular-expressions/
  */
+
+const posMap = {
+  n: "noun",
+  v: "verb",
+  a: "adjective",
+};
+
+const parseInput = (word) => { // example word: Louis[n]
+  const pos = word.match(/\[.*\]/g); // get the part of speech [n] [v] [a], example pos: ['[n]']
+  if (pos) {
+    // get the part of speech type (noun, verb, adjective)
+    // slice the brackets off the part of speech
+    const posType = posMap[pos[0].slice(1, -1)] || "unknown"; // pos[0]: '[n]' pos[0].slice(1, -1): 'n' posType: 'noun'
+    word = word.replace(/\[.*\]/g, ""); // remove the part of speech from the word
+    return { word, pos: posType }; // return the word and part of speech
+  } else { // if there is no part of speech
+    return { word }; // return the word
+  }
+};
+
 function parseStory(rawStory) {
-  // Your code here.
-  return {}; // This line is currently wrong :)
+  return rawStory.split(" ").map(word => parseInput(word));
 }
 
 /**

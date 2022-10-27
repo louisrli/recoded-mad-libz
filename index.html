@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <div class='madLibsEdit'>
-    </div>
-    <div class='madLibsPreview'>
-    </div>
-    <script src="do-not-touch.js"></script>
-    <script src="madlibs.js"></script>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Mad Libs</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="container mx-auto px-4 sm:py-12 dark:bg-neutral-800 dark:text-white" dir="auto">
+  
+  <h1 class="title text-4xl font-bold text-center pb-4">Mad Libs</h1>
+  <p class="subtitle text-xl text-center pb-8">Fill in the blanks to complete the story!</p>
+  <div class="max-w-3xl mx-auto madLibsEditor"></div>
+  
+  <h2 class="preview text-2xl font-bold text-center pt-8">Preview</h2>
+  <div class="max-w-3xl mx-auto pt-4 madLibsPreview"></div>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+  <script src="do-not-touch.js"></script>
+  <script src="madlibs.js"></script>
+  
+</body>
+
 </html>

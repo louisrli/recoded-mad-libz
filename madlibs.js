@@ -136,10 +136,6 @@ const parseInput = (word) => {
   }
 };
 
-function parseStory(rawStory) {
-  return rawStory.split(" ").map(word => parseInput(word));
-}
-
 const createMadLibsEditor = (word) => {
   // example word: { word: "Louis", pos: "noun" }
   if (word.pos) {

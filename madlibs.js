@@ -38,6 +38,8 @@ function parseStory(rawStory) {
   const noun = /\[n\]/;
   const verb = /\[v\]/;
   const adjectiven = /\[a\]/;
+  const animal = /\[an\]/;
+  const food = /\[f\]/;
 
   // console.log(arrayOfWords);
 
@@ -67,6 +69,22 @@ function parseStory(rawStory) {
       wordObj.pos = "adjective";
       // THEN PUSH THIS OBJECT INTO THE ARRAY THAT WE ALREADY DECLEARD.
       arrayOfWords.push(wordObj);
+    } else if (animal.test(string) == true) {
+      //WHENEVER THE CONDITION IS TRUE.. CREATE AN OBJECT AND PUSH THE WORD IN AND GIV THE WORD A KEY
+      const wordObj = {};
+      //SLICEING THE WORD BECAUSE THE WORD IS LOUIS[N], SO WE SHOULD REMOVE [N] AND KEEP LOUIS
+      wordObj.word = string.slice(0, string.length - 3);
+      wordObj.pos = "animal";
+      // THEN PUSH THIS OBJECT INTO THE ARRAY THAT WE ALREADY DECLEARD.
+      arrayOfWords.push(wordObj);
+    } else if (food.test(string) == true) {
+      //WHENEVER THE CONDITION IS TRUE.. CREATE AN OBJECT AND PUSH THE WORD IN AND GIV THE WORD A KEY
+      const wordObj = {};
+      //SLICEING THE WORD BECAUSE THE WORD IS LOUIS[N], SO WE SHOULD REMOVE [N] AND KEEP LOUIS
+      wordObj.word = string.slice(0, string.length - 3);
+      wordObj.pos = "food";
+      // THEN PUSH THIS OBJECT INTO THE ARRAY THAT WE ALREADY DECLEARD.
+      arrayOfWords.push(wordObj);
     } else {
       //WHENEVER THE CONDITION IS TRUE.. CREATE AN OBJECT AND PUSH THE WORD IN AND GIV THE WORD A KEY
       const wordObj = {};
@@ -78,48 +96,76 @@ function parseStory(rawStory) {
     }
   });
   console.log(arrayOfWords);
-
-  // arrayOfWords.map((element) => {
-  //   if (element.pos === "noun") {
-  //     // console.log("noun");
-  //     const nounInput = document.createElement("input");
-  //     nounInput.type = "text";
-  //     nounInput.placeholder = element.pos;
-  //     element.word = nounInput;
-  //     // console.log(element.word);
-  //   } else if (element.pos === "verb") {
-  //     // console.log("noun");
-  //     const verbInput = document.createElement("input");
-  //     verbInput.type = "text";
-  //     verbInput.placeholder = element.pos;
-  //     element.word = verbInput;
-  //     // console.log(element.word);
-  //   } else if (element.pos === "adjective") {
-  //     // console.log("noun");
-  //     const adjInput = document.createElement("input");
-  //     adjInput.placeholder = element.pos;
-  //     adjInput.type = "text";
-  //     element.word = adjInput;
-  //     // console.log(element.word);
-  //   }
-  // });
-  // let theWholeStory = "";
-  // theWholeStory = arrayOfWords.map((str) => {
-  //   return str.word;
-  // });
-
-  // document.addEventListener("DOMContentLoaded", (e) => {
-  //   const prev = document.getElementById("preview");
-  //   const h2 = createElement("h2");
-  //   h2.textContent = theWholeStory;
-  //   prev.appendChild(h2);
-  //   console.log(h2);
-  // });
-  // console.log(theWholeStory);
-  // console.log(rawStory.match(search));
   return arrayOfWords; // This line is currently wrong :)
 }
+const editingTheStory = (story) => {
+  let h2 = document.createElement("h2");
+  let previewStr = document.createElement("p");
+  previewStr.id = "previewStr";
+  const madLibsEdit = document.querySelector(".madLibsEdit");
+  const madLibsPreview = document.querySelector(".madLibsPreview");
+  madLibsEdit.appendChild(h2);
+  madLibsPreview.appendChild(previewStr);
 
+  let prevCount = 0;
+  let editCount = 0;
+  story.map((element) => {
+    if ("pos" in element) {
+      // console.log(element.word);
+      const madLibsInput = document.createElement("input");
+
+      madLibsInput.placeholder = element.pos;
+      madLibsInput.type = "text";
+      madLibsInput.className = "input";
+      madLibsInput.id = `input_${editCount++}`;
+      h2.appendChild(madLibsInput);
+      const previewSpan = document.createElement("span");
+      previewSpan.id = `span_${prevCount++}`;
+      previewSpan.innerText = `(${element.pos})`;
+      previewStr.appendChild(previewSpan);
+    } else {
+      h2.innerHTML += " " + element.word + " ";
+      previewStr.innerHTML += " " + element.word + " ";
+    }
+  });
+};
+
+function handlePreviewSection() {
+  const inputs = document.querySelectorAll("input");
+  for (let i = 0; i < inputs.length; i++) {
+    const input = document.querySelector(`#input_${i}`);
+
+    input.addEventListener("input", function (e) {
+      const span = document.querySelector(`#span_${i}`);
+      if (input.value) {
+        span.innerHTML = input.value;
+      } else {
+        span.innerHTML = `(${input.placeholder})`;
+      }
+    });
+  }
+}
+const handleInputFocuse = () => {
+  const inputs = document.querySelectorAll("input");
+  for (let i = 0; i < inputs.length; i++) {
+    const input = document.getElementById(`input_${i}`);
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        console.log("down");
+      } else if (e.key === "ArrowRight") {
+        document.getElementById(`input_${i + 1}`).focus();
+      } else if (e.key === "ArrowLeft") {
+        document.getElementById(`input_${i - 1}`).focus();
+      }
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown" && !(inputs === document.activeElement)) {
+        document.getElementById("input_0").focus();
+      }
+    });
+  }
+};
 /**
  * All your other JavaScript code goes here, inside the function. Don't worry about
  * the `then` and `async` syntax for now.
@@ -134,33 +180,12 @@ function parseStory(rawStory) {
 getRawStory()
   .then(parseStory)
   .then((processedStory) => {
-    previewTheStory(processedStory);
+    editingTheStory(processedStory);
+    handlePreviewSection();
+    handleInputFocuse();
+
     // console.log(processedStory);
   });
-
-const previewTheStory = (story) => {
-  let h2 = document.createElement("h2");
-  let previewStr = document.createElement("p");
-  const madLibsEdit = document.querySelector(".madLibsEdit");
-  const madLibsPreview = document.querySelector(".madLibsPreview");
-  madLibsEdit.appendChild(h2);
-  madLibsPreview.appendChild(previewStr);
-
-  story.map((element) => {
-    if ("pos" in element) {
-      console.log(element.word);
-      const madLibsInput = document.createElement("input");
-
-      madLibsInput.placeholder = element.pos;
-      madLibsInput.className = "input";
-      // element.word = madLibsInput;
-      h2.appendChild(madLibsInput);
-    } else {
-      h2.innerHTML += " " + element.word + " ";
-      previewStr.innerHTML += " " + element.word + " ";
-    }
-  });
-};
 
 //   if (element.pos === "noun") {
 //     // console.log("noun");

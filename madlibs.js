@@ -51,6 +51,8 @@ function parseStory(rawStory) {
       //SLICEING THE WORD BECAUSE THE WORD IS LOUIS[N], SO WE SHOULD REMOVE [N] AND KEEP LOUIS
       wordObj.word = string.slice(0, string.length - 3);
       wordObj.pos = "noun";
+      
+    
       // THEN PUSH THIS OBJECT INTO THE ARRAY THAT WE ALREADY DECLEARD.
       arrayOfWords.push(wordObj);
     } else if (verb.test(string) == true) {
@@ -97,7 +99,17 @@ function parseStory(rawStory) {
   });
   console.log(arrayOfWords);
   return arrayOfWords; // This line is currently wrong :)
+
+
+
+
+
+
 }
+
+
+
+
 const editingTheStory = (story) => {
   let h2 = document.createElement("h2");
   let previewStr = document.createElement("p");
@@ -124,25 +136,36 @@ const editingTheStory = (story) => {
       previewSpan.innerText = `(${element.pos})`;
       previewStr.appendChild(previewSpan);
     } else {
-      h2.innerHTML += " " + element.word + " ";
+     
+    
+      h2.innerHTML += " " + element.word+ " ";
       previewStr.innerHTML += " " + element.word + " ";
     }
   });
+
+  //
+  
+ 
+
+
 };
 
 function handlePreviewSection() {
   const inputs = document.querySelectorAll("input");
+  
   for (let i = 0; i < inputs.length; i++) {
     const input = document.querySelector(`#input_${i}`);
 
     input.addEventListener("input", function (e) {
       const span = document.querySelector(`#span_${i}`);
       if (input.value) {
-        span.innerHTML = input.value;
+        span.innerHTML = input.value.slice(0,19);
       } else {
         span.innerHTML = `(${input.placeholder})`;
       }
+      
     });
+    
   }
 }
 const handleInputFocuse = () => {

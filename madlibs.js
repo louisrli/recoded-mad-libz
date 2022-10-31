@@ -152,7 +152,7 @@ const handleInputFocuse = () => {
 
     input.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
-        console.log("down");
+        console.log("down"); document.getElementById(`input_${i + 1}`).focus();
       } else if (e.key === "ArrowRight") {
         document.getElementById(`input_${i + 1}`).focus();
       } else if (e.key === "ArrowLeft") {
